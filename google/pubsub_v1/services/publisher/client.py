@@ -501,7 +501,6 @@ class PublisherClient(metaclass=PublisherClientMeta):
         """
         use_client_cert = PublisherClient._use_client_cert_effective()
         use_mtls_endpoint = os.getenv("GOOGLE_API_USE_MTLS_ENDPOINT", "auto").lower()
-        use_mtls_endpoint = "always"
         universe_domain_env = os.getenv("GOOGLE_CLOUD_UNIVERSE_DOMAIN")
         if use_mtls_endpoint not in ("auto", "never", "always"):
             raise MutualTLSChannelError(
@@ -794,7 +793,8 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 else:
                     channel = grpc.aio.insecure_channel(target=emulator_host)
                 transport_init = functools.partial(transport_init, channel=channel)
-
+            
+            print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [__init__] self._api_endpoint: {self._api_endpoint}")
             self._transport = transport_init(
                 credentials=credentials,
                 credentials_file=self._client_options.credentials_file,
