@@ -183,9 +183,12 @@ class PublisherClient(metaclass=PublisherClientMeta):
         """
         # check if google-auth version supports should_use_client_cert for automatic mTLS enablement
         if hasattr(mtls, "should_use_client_cert"):  # pragma: NO COVER
-            return mtls.should_use_client_cert()
+            _should_use_client_cert = mtls.should_use_client_cert()
+            print(f"[TEST_SDK_RELEASE] _use_client_cert_effective - _should_use_client_cert: {_should_use_client_cert}")
+            return _should_use_client_cert
         else:  # pragma: NO COVER
             # if unsupported, fallback to reading from env var
+            print(f"[TEST_SDK_RELEASE] _use_client_cert_effective - mtls.should_use_client_cert not exist")
             use_client_cert_str = os.getenv(
                 "GOOGLE_API_USE_CLIENT_CERTIFICATE", "false"
             ).lower()
