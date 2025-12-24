@@ -482,7 +482,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
             api_endpoint = cls.DEFAULT_MTLS_ENDPOINT
         else:
             api_endpoint = cls.DEFAULT_ENDPOINT
-
+        print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [get_mtls_endpoint_and_cert_source] api_endpoint, client_cert_source: {api_endpoint}, {client_cert_source}")
         return api_endpoint, client_cert_source
 
     @staticmethod
@@ -506,6 +506,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
             raise MutualTLSChannelError(
                 "Environment variable `GOOGLE_API_USE_MTLS_ENDPOINT` must be `never`, `auto` or `always`"
             )
+        print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [_read_environment_variables] use_client_cert, use_mtls_endpoint, universe_domain_env: {use_client_cert}, {use_mtls_endpoint}, {universe_domain_env}")
         return use_client_cert, use_mtls_endpoint, universe_domain_env
 
     @staticmethod
