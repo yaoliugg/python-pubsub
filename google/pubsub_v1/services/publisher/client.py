@@ -520,12 +520,17 @@ class PublisherClient(metaclass=PublisherClientMeta):
         Returns:
             bytes or None: The client cert source to be used by the client.
         """
+        print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [_get_client_cert_source] provided_cert_source, use_cert_flag: {provided_cert_source}, {use_cert_flag}")
         client_cert_source = None
         if use_cert_flag:
+            print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [_get_client_cert_source] if use_cert_flag block")
             if provided_cert_source:
+                print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [_get_client_cert_source] if provided_cert_source block")
                 client_cert_source = provided_cert_source
             elif mtls.has_default_client_cert_source():
+                print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [_get_client_cert_source] elif mtls.has_default_client_cert_source() block")
                 client_cert_source = mtls.default_client_cert_source()
+        print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [_get_client_cert_source] mtls.has_default_client_cert_source(): {mtls.has_default_client_cert_source()}, client_cert_source: {client_cert_source}")        
         return client_cert_source
 
     @staticmethod
