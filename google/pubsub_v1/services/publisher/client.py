@@ -799,7 +799,6 @@ class PublisherClient(metaclass=PublisherClientMeta):
                     channel = grpc.aio.insecure_channel(target=emulator_host)
                 transport_init = functools.partial(transport_init, channel=channel)
             
-            self._api_endpoint = "pubsub.mtls.googleapis.com"
             print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [__init__] self._api_endpoint: {self._api_endpoint}")
             print(f"[TEST_SDK_RELEASE] [pubsub] [client.py] [__init__] self._client_cert_source: {self._client_cert_source}")
             self._transport = transport_init(
